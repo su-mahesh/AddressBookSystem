@@ -133,16 +133,17 @@ class AddressBookMain
 		String AddressBookName = new String("default");
 		String AddressBookNameTemp = new String(); 
 		
-		AddressBookMain AddressBookObject = new AddressBookMain();
+		AddressBookMain AddressBookObject1 = new AddressBookMain();
 		
 		HashMap<String, AddressBookMain> AddressBook = new HashMap<String, AddressBookMain>();
 		
-		AddressBook.put(AddressBookName, AddressBookObject);
+		AddressBook.put(AddressBookName, AddressBookObject1);
 		
-		System.out.println("***Welcome to Address Book Program***");
+		System.out.println("\n***Welcome to Address Book Program***");
 
 		
 		while(choice != 7){
+		AddressBookMain AddressBookObject = new AddressBookMain();
 			System.out.println("******** address book : "+AddressBookName+" ********");
 			System.out.println("\n1. create contact         2. edit contact by name");
 			System.out.println("3. delete contact by name 4. create address book");
@@ -180,7 +181,9 @@ class AddressBookMain
 						AddressBook.remove(AddressBookNameTemp);
 						System.out.println("address book deleted");
 						if(AddressBookNameTemp.equalsIgnoreCase(AddressBookName))
-							AddressBookName = "default";		
+							AddressBookName = "default";
+						if(AddressBookNameTemp.equalsIgnoreCase("default"))
+							AddressBook.put(AddressBookName, AddressBookObject);
 					}
 					else
 						System.out.println("address book doesn't exist");	
@@ -190,7 +193,10 @@ class AddressBookMain
 					sc.nextLine();
 					AddressBookNameTemp = sc.nextLine();
 					if(AddressBook.containsKey(AddressBookNameTemp)){
+					
+						AddressBook.put(AddressBookName, AddressBookObject);
 						AddressBookName = AddressBookNameTemp;
+						System.out.println("address book added");	
 					}
 					else
 						System.out.println("address book doesn't exist");	
@@ -200,6 +206,7 @@ class AddressBookMain
 				default:		
 					System.out.println("wrong choice");
 			}
+			AddressBookObject = null;
 		}
 	}
 
