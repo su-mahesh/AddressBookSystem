@@ -39,16 +39,7 @@ class AddressBookMain
 			phoneNumber = sc.nextLine();
 			
 			System.out.print("Enter email: ");
-			email = sc.nextLine();
-			
-			contact.put("First Name", firstName); 
-			contact.put("Last Name", lastName);
-			contact.put("Address", address); 
-			contact.put("City", city); 
-			contact.put("State", state);
-			contact.put("Zip", zip); 
-			contact.put("Phone Number", phoneNumber); 
-			contact.put("Email", email);					
+			email = sc.nextLine();				
 	}
 
 	public static void main(String argd[])	{
