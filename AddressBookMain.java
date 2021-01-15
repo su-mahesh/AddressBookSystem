@@ -11,9 +11,9 @@ class AddressBookMain
 	private String phoneNumber;
 	private String email;
 
-	private Map<String,Map> AddressBook = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+	private Map<String, Map> AddressBook = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
 	
-	private Map<String,String> contact = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+	private Map<String, String> contact = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
 	
 	Scanner sc = new Scanner(System.in);
 
@@ -55,12 +55,12 @@ class AddressBookMain
 	}
 	
 	public void editContactByName(){
-		Map<String,String> contact = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+		Map<String, String> contact = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
 		Scanner sc = new Scanner(System.in);
 		String searchName = new String();
 		String field = new String();
 		int choice = 1;
-		System.out.print("Enter contact name: ");		
+		System.out.print("Enter person's name: ");		
 		searchName = sc.nextLine();
 		
 		if(AddressBook.containsKey(searchName)){
@@ -130,24 +130,73 @@ class AddressBookMain
 	public static void main(String argd[])	{
 		Scanner sc = new Scanner(System.in);
 		int choice = 1;
-		AddressBookMain AddressBook = new AddressBookMain();
+		String AddressBookName = new String("default");
+		String AddressBookNameTemp = new String(); 
+		
+		AddressBookMain AddressBookObject = new AddressBookMain();
+		
+		HashMap<String, AddressBookMain> AddressBook = new HashMap<String, AddressBookMain>();
+		
+		AddressBook.put(AddressBookName, AddressBookObject);
+		
 		System.out.println("***Welcome to Address Book Program***");
-		while(choice != 4){
+
+		
+		while(choice != 7){
+			System.out.println("******** address book : "+AddressBookName+" ********");
 			System.out.println("\n1. create contact         2. edit contact by name");
-			System.out.println("3. delete contact by name 4. exit");
+			System.out.println("3. delete contact by name 4. create address book");
+			System.out.println("5. delete address book    6. change address book   ");
+			System.out.println("7. exit");
 			choice = sc.nextInt();
+			
 			switch(choice){
 				case 1:
-					AddressBook.createContact();
+					 (AddressBook.get(AddressBookName)).createContact();
 					break;
 				case 2:
-					AddressBook.editContactByName();
+					(AddressBook.get(AddressBookName)).editContactByName();
 					break;
 				case 3:
-					AddressBook.deleteContactByName();
+					(AddressBook.get(AddressBookName)).deleteContactByName();
 					break;
 				case 4:
+					System.out.println("Enter address book name");
+					sc.nextLine();
+					AddressBookNameTemp = sc.nextLine();
+					
+					if(!AddressBook.containsKey(AddressBookNameTemp)){
+						AddressBook.put(AddressBookNameTemp, AddressBookObject);
+						AddressBookName = AddressBookNameTemp;
+					}
+					else
+						System.out.println("address book already exist");	
 					break;	 
+				case 5:
+					System.out.println("Enter address book name");
+					sc.nextLine();
+					AddressBookNameTemp = sc.nextLine();
+					if(AddressBook.containsKey(AddressBookNameTemp)){
+						AddressBook.remove(AddressBookNameTemp);
+						System.out.println("address book deleted");
+						if(AddressBookNameTemp.equalsIgnoreCase(AddressBookName))
+							AddressBookName = "default";		
+					}
+					else
+						System.out.println("address book doesn't exist");	
+					break;	 
+				case 6:
+					System.out.println("Enter address book name");
+					sc.nextLine();
+					AddressBookNameTemp = sc.nextLine();
+					if(AddressBook.containsKey(AddressBookNameTemp)){
+						AddressBookName = AddressBookNameTemp;
+					}
+					else
+						System.out.println("address book doesn't exist");	
+					break;
+				case 7:
+					break;		
 				default:		
 					System.out.println("wrong choice");
 			}
