@@ -48,7 +48,9 @@ class AddressBookMain
 			contact.put("State", state);
 			contact.put("Zip", zip); 
 			contact.put("Phone Number", phoneNumber); 
-			contact.put("Email", email);					
+			contact.put("Email", email);	
+			
+			AddressBook.put(firstName+" "+lastName, contact);		
 	}
 
 	public static void main(String argd[])	{
