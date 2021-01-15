@@ -112,7 +112,19 @@ class AddressBookMain
 		}
 		else
 			System.out.println("Contact Not Found");
-			
+	}
+	public void deleteContactByName(){
+		Scanner sc = new Scanner(System.in);
+		String searchName = new String();
+		System.out.print("Enter contact name: ");		
+		searchName = sc.nextLine();
+		
+		if(AddressBook.containsKey(searchName)){
+			AddressBook.remove(searchName);	
+			System.out.println("Contact Deleted");		
+		}	
+		else
+			System.out.println("Contact Not Found");	
 	}
 
 	public static void main(String argd[])	{
@@ -120,9 +132,9 @@ class AddressBookMain
 		int choice = 1;
 		AddressBookMain AddressBook = new AddressBookMain();
 		System.out.println("***Welcome to Address Book Program***");
-		while(choice != 3){
-			System.out.println("1. create contact  2. edit contact by name");
-			System.out.println("3. exit");
+		while(choice != 4){
+			System.out.println("\n1. create contact         2. edit contact by name");
+			System.out.println("3. delete contact by name 4. exit");
 			choice = sc.nextInt();
 			switch(choice){
 				case 1:
@@ -132,7 +144,10 @@ class AddressBookMain
 					AddressBook.editContactByName();
 					break;
 				case 3:
+					AddressBook.deleteContactByName();
 					break;
+				case 4:
+					break;	
 				default:		
 					System.out.println("wrong choice");
 			}
