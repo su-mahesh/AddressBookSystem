@@ -116,7 +116,7 @@ class AddressBookMain
 	public void deleteContactByName(){
 		Scanner sc = new Scanner(System.in);
 		String searchName = new String();
-		System.out.print("Enter contact name: ");		
+		System.out.print("Enter person name: ");		
 		searchName = sc.nextLine();
 		
 		if(AddressBook.containsKey(searchName)){
@@ -147,7 +147,7 @@ class AddressBookMain
 					AddressBook.deleteContactByName();
 					break;
 				case 4:
-					break;	
+					break;	 
 				default:		
 					System.out.println("wrong choice");
 			}
